@@ -1,0 +1,6 @@
+[core]
+    remote = myremote
+['remote "localremote"']
+    url = ../../dvc
+['remote "myremote"']
+    url = s3://bucket-udacity-demo
