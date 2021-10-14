@@ -1,26 +1,6 @@
 from sklearn.metrics import fbeta_score, precision_score, recall_score
 
 
-# Optional: implement hyperparameter tuning.
-def train_model(X_train, y_train):
-    """
-    Trains a machine learning model and returns it.
-
-    Inputs
-    ------
-    X_train : np.array
-        Training data.
-    y_train : np.array
-        Labels.
-    Returns
-    -------
-    model
-        Trained machine learning model.
-    """
-
-    pass
-
-
 def compute_model_metrics(y, preds):
     """
     Validates the trained machine learning model using precision, recall, and F1.
@@ -43,18 +23,26 @@ def compute_model_metrics(y, preds):
     return precision, recall, fbeta
 
 
-def inference(model, X):
-    """ Run model inferences and return the predictions.
+def create_slice(test, column_name, pipeline, encoder):
+    uniques = test[column_name].unique()
 
-    Inputs
-    ------
-    model : ???
-        Trained machine learning model.
-    X : np.array
-        Data used for prediction.
-    Returns
-    -------
-    preds : np.array
-        Predictions from the model.
-    """
-    pass
+    metrics_file = open('starter/model/%s_slice_output.txt' % (column_name), "w")
+    metrics_file.write(
+        "Performance results for the slices of the feature %s" % (column_name))
+    metrics_file.write("\n")
+
+    for unique in uniques:
+        slice = test[test[column_name] == unique]
+        x_test, y_test = slice.drop(['salary'], axis=1), slice['salary']
+        preds = pipeline.predict(x_test)
+        precision, recall, fbeta = compute_model_metrics(encoder.transform(y_test), preds)
+        metrics_file.write("Precision: %f" % (precision))
+        metrics_file.write("\n")
+        metrics_file.write("Recall: %f" % (recall))
+        metrics_file.write("\n")
+        metrics_file.write("F1: %f" % (fbeta))
+        metrics_file.write("\n")
+        metrics_file.write("*-*"*5)
+        metrics_file.write("\n")
+
+    metrics_file.close()
