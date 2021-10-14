@@ -33,7 +33,8 @@ def create_preprocessor():
     num_selector = make_column_selector(dtype_include=np.number)
 
     # As our categorical column does not have to much different unique values we are going to use one_hot_encoder
-    # We are going to use also a standarscaler for scaling and a imputer as we have some NaNs in our badroom column
+    # We are going to use also a standarscaler for scaling and a imputer as we
+    # have some NaNs in our badroom column
     categorical_processor = OneHotEncoder(handle_unknown="ignore")
     numerical_processor = make_pipeline(
         StandardScaler(), SimpleImputer(strategy="mean", add_indicator=True)
@@ -42,8 +43,7 @@ def create_preprocessor():
     # make column transformer to automaticaly do one_hot_encoder where there are categorical columns
     # and standarscaler where there are numerical columns
     preprocessor = make_column_transformer(
-        (numerical_processor, num_selector), (categorical_processor, cat_selector)
-    )
+        (numerical_processor, num_selector), (categorical_processor, cat_selector))
 
     return preprocessor
 
@@ -79,7 +79,8 @@ def main(args):
             repo="https://github.com/gaceladri/nd0821-c3-starter-code") as fd:
         data = pd.read_csv(fd)
 
-    # Optional enhancement, use K-fold cross validation instead of a train-test split.
+    # Optional enhancement, use K-fold cross validation instead of a
+    # train-test split.
     train, test = train_test_split(data, test_size=0.25, random_state=1)
 
     x_train, y_train = train.drop(['salary'], axis=1), train['salary']
