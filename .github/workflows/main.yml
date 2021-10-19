@@ -29,6 +29,12 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.7
+      
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::152873379061:role/my-github-actions-role
+          aws-region: eu-west-2
 
       - name: setup dvc
         uses: iterative/setup-dvc@v1
@@ -54,10 +60,3 @@ jobs:
         run: |
           pytest starter/tets/tests.py
           pytest test_fastapi.py
-      
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          role-to-assume: arn:aws:iam::152873379061:role/my-github-actions-role
-          aws-region: eu-west-2
-      
