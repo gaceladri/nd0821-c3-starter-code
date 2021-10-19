@@ -22,7 +22,7 @@ if "DYNO" in os.environ and os.path.isdir(".dvc"):
 
 with dvc.api.open(
     "/starter/model/pipeline.pkl",
-        repo="https://github.com/gaceladri/nd0821-c3-starter-code") as pkl:
+        repo="https://github.com/gaceladri/nd0821-c3-starter-code", mode='rb') as pkl:
     model = pd.read_pickle(pkl)
 
 
