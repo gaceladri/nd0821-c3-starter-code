@@ -1,6 +1,7 @@
 # Script to train machine learning model.
 import argparse
 import logging
+import sys
 
 import dvc.api
 import numpy as np
@@ -14,6 +15,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline, make_pipeline
 from sklearn.preprocessing import LabelBinarizer, OneHotEncoder, StandardScaler
 
+sys.path.insert(1, './ml')
 from ml.model import create_slice
 
 set_config(display='diagram')

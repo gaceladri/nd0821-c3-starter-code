@@ -1,6 +1,3 @@
-import pytest
-import pandas as pd
-import numpy as np
 import sklearn
 
 from starter.train_model import create_label_binarizer
