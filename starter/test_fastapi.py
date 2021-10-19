@@ -10,7 +10,7 @@ client = TestClient(app)
 def test_client_root():
     r = client.get("/")
     assert r.status_code == 200
-    assert r.json().message == "Hello world!"
+    assert r.json() == {'message': 'Hello world!'}
 
 def test_column_names():
     request_data = {
