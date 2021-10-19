@@ -39,7 +39,7 @@ jobs:
         uses: iterative/setup-dvc@v1
       
       - name: update dvc artifacts
-        uses: |
+        run: |
            dvc pull
       
       - name: Install dependencies # The first step that isn't just calling another action.
