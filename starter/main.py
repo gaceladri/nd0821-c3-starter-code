@@ -2,6 +2,7 @@
 
 import os
 
+import dvc.api
 import pandas as pd
 from fastapi import Depends, FastAPI
 from fastapi.security.oauth2 import OAuth2PasswordBearer
@@ -19,7 +20,10 @@ if "DYNO" in os.environ and os.path.isdir(".dvc"):
         exit("Pull failed")
     os.system("rm -r .dvc .apt/usr/lib/dvc")
 
-model = pd.read_pickle("./model/pipeline.pkl")
+with dvc.api.open(
+    "/starter/model/pipeline.pkl",
+        repo="https://github.com/gaceladri/nd0821-c3-starter-code") as pkl:
+    model = pd.read_pickle(pkl)
 
 
 @app.get("/")
