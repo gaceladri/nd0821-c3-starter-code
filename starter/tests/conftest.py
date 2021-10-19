@@ -3,7 +3,7 @@ import pandas as pd
 import pytest
 
 
-@pytest.fixture(scope='sesion')
+@pytest.fixture(scope='session')
 def data():
     data = dvc.api.read(
         "/starter/data/census_cleaned.csv",
