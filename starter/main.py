@@ -19,7 +19,7 @@ if "DYNO" in os.environ and os.path.isdir(".dvc"):
         exit("Pull failed")
     os.system("rm -r .dvc .apt/usr/lib/dvc")
 
-model = pd.read_pickle(r"starter/model/pipeline.pkl")
+model = pd.read_pickle("./model/pipeline.pkl")
 
 
 @app.get("/")
