@@ -19,8 +19,7 @@ data = {
 }
 
 response = requests.post(
-    'http://127.0.0.1:8000/prediction/', data=json.dumps(data))
-# https://coursera-income-pred.herokuapp.com/
+    'https://coursera-income-pred.herokuapp.com/prediction/', data=json.dumps(data))
 
 print(response.status_code)
 print(response.json())
