@@ -25,6 +25,11 @@ with dvc.api.open(
         repo="https://github.com/gaceladri/nd0821-c3-starter-code", mode='rb') as pkl:
     model = pd.read_pickle(pkl)
 
+with dvc.api.open(
+    "starter/model/label_binarizer.pkl",
+        repo="https://github.com/gaceladri/nd0821-c3-starter-code", mode='rb') as pkl:
+    lb = pd.read_pickle(pkl)
+
 
 @app.get("/")
 async def root():
@@ -51,14 +56,16 @@ class Input(BaseModel):
 
 
 class Output(BaseModel):
-    prediction: int
+    prediction: str
 
 
 @app.post("/prediction/", response_model=Output, status_code=200)
 async def get_predictions(input: Input):
     print("inpuits:\n",input.dict(by_alias=True))
+    
     input_dataframe = pd.DataFrame(input.dict(by_alias=True), index=[0])
     predictions = model.predict(input_dataframe)
+    predictions = lb.inverse_transform(predictions)
 
     print('preds:', predictions)
     return {"prediction": predictions}

@@ -148,6 +148,7 @@ def main(args):
 
     model.fit(x_train, y_train_bin)
     pd.to_pickle(model, '../starter/model/pipeline.pkl')
+    pd.to_pickle(label_binarizer, '../starter/model/label_binarizer.pkl')
 
     if args.slice_eval:
         create_slice(test, args.column_to_slice, model, label_binarizer)
