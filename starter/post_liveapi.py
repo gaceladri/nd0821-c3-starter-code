@@ -19,7 +19,8 @@ data = {
 }
 
 response = requests.post(
-    'https://coursera-income-pred.herokuapp.com/prediction/', data=json.dumps(data))
+    'http://127.0.0.1:8000/prediction/', data=json.dumps(data))
+# https://coursera-income-pred.herokuapp.com/
 
 print(response.status_code)
 print(response.json())

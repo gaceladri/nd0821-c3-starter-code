@@ -56,7 +56,9 @@ class Output(BaseModel):
 
 @app.post("/prediction/", response_model=Output, status_code=200)
 async def get_predictions(input: Input):
-    input_dataframe = pd.Dataframe(input)
+    print("inpuits:\n",input.dict(by_alias=True))
+    input_dataframe = pd.DataFrame(input.dict(by_alias=True), index=[0])
     predictions = model.predict(input_dataframe)
 
+    print('preds:', predictions)
     return {"prediction": predictions}
