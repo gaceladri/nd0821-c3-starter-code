@@ -51,7 +51,7 @@ class Input(BaseModel):
 
 
 class Output(BaseModel):
-    prediction: str
+    prediction: int
 
 
 @app.post("/prediction/", response_model=Output, status_code=200)
