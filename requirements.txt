@@ -8,6 +8,5 @@ uvicorn
 gunicorn
 dvc[s3]
 xgboost
-python==3.8
 pytest
 flake8
