@@ -8,3 +8,6 @@ uvicorn
 gunicorn
 dvc[s3]
 xgboost
+python==3.8.12
+pytest
+flake8
