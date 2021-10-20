@@ -120,8 +120,8 @@ def create_pipeline(model):
 
 
 def main(args):
+    
     # Add code to load in the data.
-
     with dvc.api.open(
         "starter/data/census_cleaned.csv",
             repo="https://github.com/gaceladri/nd0821-c3-starter-code") as fd:
