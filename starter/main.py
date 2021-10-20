@@ -4,7 +4,7 @@ import os
 
 import dvc.api
 import pandas as pd
-from fastapi import Depends, FastAPI
+from fastapi import FastAPI
 from fastapi.security.oauth2 import OAuth2PasswordBearer
 from pydantic import BaseModel, Field
 
@@ -68,4 +68,4 @@ async def get_predictions(input: Input):
     predictions = lb.inverse_transform(predictions)
 
     print('preds:', predictions)
-    return {"prediction": predictions}
+    return {"prediction": predictions[0]}
