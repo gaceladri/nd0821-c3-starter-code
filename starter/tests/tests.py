@@ -1,7 +1,8 @@
 import sklearn
+import xgboost
 
-from starter.train_model import create_label_binarizer
-
+from starter.train_model import create_label_binarizer, create_preprocessor
+from starter.train_model import create_pipeline
 
 def test_uniques(data):
     expected_uniques = [
@@ -53,3 +54,12 @@ def test_column_names(data):
 def test_label_binarizer():
     lb = create_label_binarizer()
     assert type(lb) == sklearn.preprocessing._label.LabelBinarizer
+
+
+def test_pipeline():
+    pipeline = create_pipeline(xgboost.XGBClassifier(use_label_encoder=False))
+    assert type(pipeline) == sklearn.compose.TransformedTargetRegressor
+
+def test_preprocessor():
+    preprocessor = create_preprocessor()
+    assert type(preprocessor) == sklearn.compose.make_column_transformer
