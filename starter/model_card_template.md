@@ -40,7 +40,7 @@ The best value is 1 and the worst value is 0.
 
 ## Ethical Considerations
 
-The data is publicly available, so the model can be used to disclose to wich degree a person's salary is associated with his or her age, education, location, etc. The model should be assessed with other data and models to address a more considerate conclusion.
+The data is publicly available, so the model can be used to disclose to wich degree a person's salary is associated with his or her age, education, location, etc.
 
 ## Caveats and Recommendations
 
