@@ -62,4 +62,4 @@ def test_pipeline():
 
 def test_preprocessor():
     preprocessor = create_preprocessor()
-    assert type(preprocessor) == sklearn.compose.make_column_transformer
+    assert type(preprocessor) == sklearn.compose._column_transformer.ColumnTransformer
